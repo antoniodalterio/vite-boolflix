@@ -1,9 +1,31 @@
-<script></script>
+<script>
+import axios from 'axios';
+import { store } from './store.js';
+import HeaderApp from './components/HeaderApp.vue';
+import MainApp from './components/MainApp.vue';
+export default {
+  components: {
+    HeaderApp,
+    MainApp,
+  },
+  data() {
+    return {
+      store,
+    };
+  },
+  created() {
+    axios
+      .get(store.apiUrl + store.searchMovies + '&language=it-IT')
+      .then((response) => {
+        console.log(response.data.results);
+      });
+  },
+};
+</script>
 
 <template>
-  <div class="container w-auto">
-    <h1 class="text-center">salve</h1>
-  </div>
+  <HeaderApp></HeaderApp>
+  <MainApp></MainApp>
 </template>
 
 <style scoped></style>

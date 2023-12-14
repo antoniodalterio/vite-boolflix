@@ -12,7 +12,7 @@ export default {
 <template>
   <header>
     <HeaderLogo></HeaderLogo>
-    <HeaderSearch></HeaderSearch>
+    <HeaderSearch @searchEmit="$emit('searchMovie')"></HeaderSearch>
   </header>
 </template>
 <style></style>

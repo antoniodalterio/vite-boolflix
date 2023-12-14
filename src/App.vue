@@ -11,20 +11,25 @@ export default {
   data() {
     return {
       store,
+      currentFilm: 0,
     };
   },
-  created() {
-    axios
-      .get(store.apiUrl + store.searchMovies + '&language=it-IT')
-      .then((response) => {
-        console.log(response.data.results);
-      });
+  created() {},
+  methods: {
+    search() {
+      axios
+        .get(store.apiUrl + store.searchMovies + '&language=it-IT')
+        .then((response) => {
+          store.movies = response.data.results;
+          console.log(store.movies);
+        });
+    },
   },
 };
 </script>
 
 <template>
-  <HeaderApp></HeaderApp>
+  <HeaderApp @searchMovie="search"></HeaderApp>
   <MainApp></MainApp>
 </template>
 

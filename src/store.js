@@ -4,7 +4,7 @@ export const store = reactive({
   searchText: '',
   loading: true,
   movies: [],
-  searchMovies: 'ritorno-al-futuro',
+  searchMovies: '',
   apiUrl:
     'https://api.themoviedb.org/3/search/movie?api_key=0a17dbe8a098c775a7865363abca9b06&query=',
 });

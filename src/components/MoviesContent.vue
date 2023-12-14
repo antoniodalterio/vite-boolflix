@@ -1,20 +1,41 @@
 <script>
 import { store } from '../store';
 export default {
-  name: 'Moovies',
+  name: 'Movies',
   data() {
     return {
       store,
     };
   },
+  methods: {
+    flag(index) {
+      if (store.movies[index].original_language === 'en') {
+        return 'src/assets/img/Flag_of_the_USA.svg.png';
+      } else if (store.movies[index].original_language === 'it') {
+        return 'src/assets/img/Flag_of_italy.svg.png';
+      }
+    },
+
+    languages(index) {
+      if (
+        store.movies[index].original_language !== 'en' &&
+        store.movies[index].original_language !== 'it'
+      ) {
+        return store.movies.original_language;
+      }
+    },
+  },
 };
 </script>
 <template>
   <ul class="list-group">
-    <li class="list-group-item" v-for="movie in store.movies">
+    <li class="list-group-item" v-for="(movie, index) in store.movies">
       <h3>{{ movie.title }}</h3>
       <h3>{{ movie.original_title }}</h3>
-      <h4>{{ movie.original_language }}</h4>
+      <div>
+        <p></p>
+        <img :src="flag(index)" alt="" />
+      </div>
       <h4>{{ movie.vote_average }}</h4>
     </li>
   </ul>

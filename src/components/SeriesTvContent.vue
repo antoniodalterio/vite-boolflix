@@ -5,6 +5,7 @@ export default {
   data() {
     return {
       store,
+      maxVote: 5,
     };
   },
   methods: {
@@ -37,6 +38,13 @@ export default {
       const result = Math.ceil(num / 2);
       return result;
     },
+
+    voteStar(num, num2) {
+      const result = num - num2;
+      console.log(result);
+      console.log('---------------');
+      return result;
+    },
   },
 };
 </script>
@@ -52,7 +60,6 @@ export default {
       </div>
       <h3>{{ serie.name }}</h3>
       <h3>{{ serie.original_name }}</h3>
-      <p><font-awesome-icon icon="fa-solid fa-user-secret" /></p>
 
       <div>
         <p v-if="languages(index)">
@@ -60,7 +67,23 @@ export default {
         </p>
         <img v-else :src="flag(index)" alt="" class="lang" />
       </div>
-      <h4>{{ numbCeil(serie.vote_average) }}</h4>
+      <h4>
+        <h4 class="my-3">
+          <font-awesome-icon
+            v-for="n in numbCeil(serie.vote_average)"
+            icon="fa-solid fa-star"
+            class="star"
+          />
+          <font-awesome-icon
+            v-for="n in voteStar(
+              this.maxVote,
+              this.numbCeil(serie.vote_average)
+            )"
+            icon="fa-regular fa-star"
+            class="star"
+          />
+        </h4>
+      </h4>
     </li>
   </ul>
 </template>

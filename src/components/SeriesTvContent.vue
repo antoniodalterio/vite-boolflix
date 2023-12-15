@@ -52,6 +52,8 @@ export default {
       </div>
       <h3>{{ serie.name }}</h3>
       <h3>{{ serie.original_name }}</h3>
+      <p><font-awesome-icon icon="fa-solid fa-user-secret" /></p>
+
       <div>
         <p v-if="languages(index)">
           {{ serie.original_language }}

@@ -28,13 +28,14 @@ export default {
 <template>
   <ul class="list-group">
     <li class="list-group-item" v-for="(movie, index) in store.movies">
+      <img :src="store.img + store.imgSize + movie.poster_path" alt="" />
       <h3>{{ movie.title }}</h3>
       <h3>{{ movie.original_title }}</h3>
       <div>
         <p v-if="languages(index)">
           {{ movie.original_language }}
         </p>
-        <img v-else :src="flag(index)" alt="" />
+        <img v-else :src="flag(index)" alt="" class="lang" />
       </div>
       <h4>{{ movie.vote_average }}</h4>
     </li>

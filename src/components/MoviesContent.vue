@@ -23,6 +23,16 @@ export default {
       );
     },
 
+    posterImg(img) {
+      if (img) {
+        const path = store.img + store.imgSize;
+        const result = path + img;
+        return result;
+      } else if (!img) {
+        return 'src/assets/img/img-not-found.jpg';
+      }
+    },
+
     numbCeil(num) {
       const result = Math.ceil(num / 2);
       return result;
@@ -33,7 +43,11 @@ export default {
 <template>
   <ul class="list-group">
     <li class="list-group-item" v-for="(movie, index) in store.movies">
-      <img :src="store.img + store.imgSize + movie.poster_path" alt="" />
+      <img
+        :src="posterImg(movie.poster_path)"
+        alt=""
+        :class="!movie.poster_path ? 'not-found' : ''"
+      />
       <h3>{{ movie.title }}</h3>
       <h3>{{ movie.original_title }}</h3>
       <div>

@@ -22,6 +22,21 @@ export default {
         store.series[index].original_language !== 'en'
       );
     },
+
+    posterImg(img) {
+      if (img) {
+        const path = store.img + store.imgSize;
+        const result = path + img;
+        return result;
+      } else if (!img) {
+        return 'src/assets/img/img-not-found.jpg';
+      }
+    },
+
+    numbCeil(num) {
+      const result = Math.ceil(num / 2);
+      return result;
+    },
   },
 };
 </script>
@@ -29,17 +44,21 @@ export default {
   <ul class="list-group">
     <li class="list-group-item" v-for="(serie, index) in store.series">
       <div>
-        <img :src="store.img + store.imgSize + serie.poster_path" alt="" />
+        <img
+          :src="posterImg(serie.poster_path)"
+          alt=""
+          :class="!serie.poster_path ? 'not-found' : ''"
+        />
       </div>
       <h3>{{ serie.name }}</h3>
-      <h3>{{ serie.original_title }}</h3>
+      <h3>{{ serie.original_name }}</h3>
       <div>
         <p v-if="languages(index)">
           {{ serie.original_language }}
         </p>
         <img v-else :src="flag(index)" alt="" class="lang" />
       </div>
-      <h4>{{ serie.vote_average }}</h4>
+      <h4>{{ numbCeil(serie.vote_average) }}</h4>
     </li>
   </ul>
 </template>

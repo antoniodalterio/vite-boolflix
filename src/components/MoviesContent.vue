@@ -17,12 +17,10 @@ export default {
     },
 
     languages(index) {
-      if (
-        store.movies[index].original_language !== 'en' &&
-        store.movies[index].original_language !== 'it'
-      ) {
-        return store.movies.original_language;
-      }
+      return (
+        store.movies[index].original_language !== 'it' &&
+        store.movies[index].original_language !== 'en'
+      );
     },
   },
 };
@@ -33,8 +31,10 @@ export default {
       <h3>{{ movie.title }}</h3>
       <h3>{{ movie.original_title }}</h3>
       <div>
-        <p></p>
-        <img :src="flag(index)" alt="" />
+        <p v-if="languages(index)">
+          {{ movie.original_language }}
+        </p>
+        <img v-else :src="flag(index)" alt="" />
       </div>
       <h4>{{ movie.vote_average }}</h4>
     </li>

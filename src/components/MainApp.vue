@@ -10,7 +10,9 @@ export default {
 };
 </script>
 <template>
+  <h2>Movies</h2>
   <MoviesContent></MoviesContent>
+  <h2>Serie tv</h2>
   <SeriesTvContent></SeriesTvContent>
 </template>
 <style></style>

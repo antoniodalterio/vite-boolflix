@@ -18,9 +18,16 @@ export default {
   methods: {
     search() {
       axios
-        .get(store.apiUrl + store.searchMovies + '&language=it-IT')
+        .get(store.apiUrlMovie + store.searchMovies + '&language=it-IT')
         .then((response) => {
           store.movies = response.data.results;
+          console.log(store.movies);
+        });
+
+      axios
+        .get(store.apiUrlSeries + store.searchMovies + '&language=it-IT')
+        .then((response) => {
+          store.series = response.data.results;
           console.log(store.movies);
         });
     },

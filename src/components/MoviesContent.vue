@@ -22,6 +22,11 @@ export default {
         store.movies[index].original_language !== 'en'
       );
     },
+
+    numbCeil(num) {
+      const result = Math.ceil(num / 2);
+      return result;
+    },
   },
 };
 </script>
@@ -37,7 +42,7 @@ export default {
         </p>
         <img v-else :src="flag(index)" alt="" class="lang" />
       </div>
-      <h4>{{ movie.vote_average }}</h4>
+      <h4>{{ numbCeil(movie.vote_average) }}</h4>
     </li>
   </ul>
 </template>

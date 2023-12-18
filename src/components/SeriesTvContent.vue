@@ -49,41 +49,49 @@ export default {
 };
 </script>
 <template>
-  <ul class="list-group">
-    <li class="list-group-item" v-for="(serie, index) in store.series">
-      <div>
-        <img
-          :src="posterImg(serie.poster_path)"
-          alt=""
-          :class="!serie.poster_path ? 'not-found' : ''"
-        />
-      </div>
-      <h3>{{ serie.name }}</h3>
-      <h3>{{ serie.original_name }}</h3>
+  <ul class="d-flex flex-wrap justify-content-center p-3">
+    <li
+      class="list-group-item flip-card"
+      v-for="(serie, index) in store.series"
+    >
+      <div class="flip-card-inner">
+        <div class="flip-card-front">
+          <img
+            class="img-size"
+            :src="posterImg(serie.poster_path)"
+            alt=""
+            :class="!serie.poster_path ? 'not-found' : ''"
+          />
+        </div>
+        <div class="flip-card-back">
+          <h3>{{ serie.name }}</h3>
+          <h3>{{ serie.original_name }}</h3>
 
-      <div>
-        <p v-if="languages(index)">
-          {{ serie.original_language }}
-        </p>
-        <img v-else :src="flag(index)" alt="" class="lang" />
+          <div>
+            <p v-if="languages(index)">
+              {{ serie.original_language }}
+            </p>
+            <img v-else :src="flag(index)" alt="" class="lang" />
+          </div>
+          <h4>
+            <h4 class="my-3">
+              <font-awesome-icon
+                v-for="n in numbCeil(serie.vote_average)"
+                icon="fa-solid fa-star"
+                class="star"
+              />
+              <font-awesome-icon
+                v-for="n in voteStar(
+                  this.maxVote,
+                  this.numbCeil(serie.vote_average)
+                )"
+                icon="fa-regular fa-star"
+                class="star"
+              />
+            </h4>
+          </h4>
+        </div>
       </div>
-      <h4>
-        <h4 class="my-3">
-          <font-awesome-icon
-            v-for="n in numbCeil(serie.vote_average)"
-            icon="fa-solid fa-star"
-            class="star"
-          />
-          <font-awesome-icon
-            v-for="n in voteStar(
-              this.maxVote,
-              this.numbCeil(serie.vote_average)
-            )"
-            icon="fa-regular fa-star"
-            class="star"
-          />
-        </h4>
-      </h4>
     </li>
   </ul>
 </template>

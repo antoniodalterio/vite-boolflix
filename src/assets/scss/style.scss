@@ -1,14 +1,9 @@
+@use 'common.scss' as *;
+@use 'variables.scss' as *;
+@use 'components.scss';
 @import 'bootstrap/scss/bootstrap';
-img.lang {
-  width: 50px;
-}
 
-img.not-found {
-  width: 342px;
-  height: 632px;
-  object-fit: cover;
-}
-
-.star {
-  color: #db0000;
+body {
+  background-color: $bgBody;
+  color: white;
 }

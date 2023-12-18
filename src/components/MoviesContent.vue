@@ -49,34 +49,68 @@ export default {
 };
 </script>
 <template>
-  <ul class="list-group">
-    <li class="list-group-item" v-for="(movie, index) in store.movies">
-      <img
-        :src="posterImg(movie.poster_path)"
-        alt=""
-        :class="!movie.poster_path ? 'not-found' : ''"
-      />
-      <h3>{{ movie.title }}</h3>
-      <h3>{{ movie.original_title }}</h3>
-      <div>
-        <p v-if="languages(index)">
-          {{ movie.original_language }}
-        </p>
-        <img v-else :src="flag(index)" alt="" class="lang" />
+  <ul class="d-flex flex-wrap justify-content-center p-3">
+    <li
+      class="list-group-item flip-card"
+      v-for="(movie, index) in store.movies"
+    >
+      <div class="flip-card-inner">
+        <div class="flip-card-front">
+          <img
+            class="img-size"
+            :src="posterImg(movie.poster_path)"
+            alt=""
+            :class="!movie.poster_path ? 'not-found' : ''"
+          />
+        </div>
+
+        <div class="flip-card-back d-flex flex-column">
+          <div>
+            Title:
+            <span>{{ movie.title }}</span>
+          </div>
+
+          <div>
+            <p v-if="languages(index)">
+              Language: {{ movie.original_language }}
+            </p>
+            <div v-else>
+              Language:
+              <img :src="flag(index)" alt="" class="lang" />
+            </div>
+          </div>
+          <h4 class="my-3">
+            <font-awesome-icon
+              v-for="n in numbCeil(movie.vote_average)"
+              icon="fa-solid fa-star"
+              class="star"
+            />
+            <font-awesome-icon
+              v-for="n in voteStar(
+                this.maxVote,
+                this.numbCeil(movie.vote_average)
+              )"
+              icon="fa-regular fa-star"
+              class="star"
+            />
+          </h4>
+          <div class="overflow-y-scroll">{{ movie.overview }}</div>
+        </div>
       </div>
-      <h4 class="my-3">
-        <font-awesome-icon
-          v-for="n in numbCeil(movie.vote_average)"
-          icon="fa-solid fa-star"
-          class="star"
-        />
-        <font-awesome-icon
-          v-for="n in voteStar(this.maxVote, this.numbCeil(movie.vote_average))"
-          icon="fa-regular fa-star"
-          class="star"
-        />
-      </h4>
     </li>
   </ul>
 </template>
 <style></style>
+
+<!-- <div class="flip-card">
+  <div class="flip-card-inner">
+    <div class="flip-card-front">
+      <img src="img_avatar.png" alt="Avatar" style="width:300px;height:300px;">
+    </div>
+    <div class="flip-card-back">
+      <h1>John Doe</h1> 
+      <p>Architect & Engineer</p> 
+      <p>We love that guy</p>
+    </div>
+  </div>
+</div>  -->

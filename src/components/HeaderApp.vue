@@ -15,4 +15,12 @@ export default {
     <HeaderSearch @searchEmit="$emit('searchMovie')"></HeaderSearch>
   </header>
 </template>
-<style></style>
+<style>
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 90%;
+  margin: auto;
+}
+</style>

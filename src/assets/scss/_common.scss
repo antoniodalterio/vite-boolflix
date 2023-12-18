@@ -1,0 +1,21 @@
+@use 'variables.scss' as *;
+
+img.lang {
+  width: 30px;
+  margin-left: 10px;
+}
+
+img.not-found,
+img.img-size {
+  width: 100%;
+  height: 100%;
+}
+
+.star {
+  color: $starVote;
+}
+
+section {
+  width: 80%;
+  margin: auto;
+}
